@@ -3,23 +3,25 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     ofBackground(0,0,0);
+    ofSetBackgroundAuto(false);
+    
     masterCounter = 0;
     direction = 1; //count up
     
     // Video piping
-    pipe.open("fifo.ppm"); // <---- remember this for FFMPEG
-    pipe.setFrameRate(20);
+   // pipe.open("fifo.ppm"); // <---- remember this for FFMPEG
+   // pipe.setFrameRate(20);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    pipe.update();
+   // pipe.update();
     masterCounter+=direction;
     if (masterCounter > 300) {
         direction = -1;
     }
     if (masterCounter < -300) {
-        direction = 1; 
+        direction = 1;
     }
     
 }
@@ -27,22 +29,23 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
     // Draw the live web feed
-    pipe.draw(0,0);
+   // pipe.draw(0,0);
     
     
-    //normalize mouse
+    //normalize mouse (within the window space...
     float daMouseX = float(mouseX)/float(ofGetWidth());
     float daMouseY = float(mouseY)/ofGetHeight();
     ofLogNotice(ofToString(daMouseX));
     
     //Abstract line stuff
     for (int i = 0; i < ofGetWidth(); i++) {
-        int r = daMouseX*255;
-        int g = daMouseY*255;
-        int b = daMouseX*daMouseY*255;
-        //ofSetColor(r, g, b); //Replace this with pixel colors from feed
+        int r = daMouseX*sin(i)/4;
+        int g = daMouseY*i/4;
+        int b = daMouseX*daMouseY*i/4;
+        ofSetColor(r, g, b); //Replace this with pixel colors from feed
         ofLine(i, 0, i*sin(i)*300, i*cos(i)*/*mouseY*30*/masterCounter);
     }
+    //ofEllipse(masterCounter, masterCounter/3, 100, 100);
     
 }
 
