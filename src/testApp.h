@@ -20,7 +20,12 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-private:
-    ofxVideoPipe pipe;
+    private:
+        ofxVideoPipe pipe;
+
+public:
+    int masterCounter;
+    int direction;
+    
 		
 };
