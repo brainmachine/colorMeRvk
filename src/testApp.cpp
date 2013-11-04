@@ -21,8 +21,8 @@ void testApp::draw(){
     
     //Abstract line stuff
     for (int i = 0; i < ofGetWidth(); i++) {
-        ofSetColor(i/4, i/3, i/2); //Replace this with pixel colors from feed
-        ofLine(i, 0, i*sin(i)*mouseX, i*cos(i)*mouseY);
+       ofSetColor(i/4, i/3, i/2); //Replace this with pixel colors from feed
+        ofLine(i, 0, i*sin(i)*mouseX, i*cos(i)*mouseY*3);
     }
     
 }
