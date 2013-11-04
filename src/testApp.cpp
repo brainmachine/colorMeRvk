@@ -3,19 +3,28 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     ofBackground(0,0,0);
+    
+    // Video piping
+    pipe.open("fifo.ppm"); // <---- remember this for FFMPEG
+    pipe.setFrameRate(20);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    
+    pipe.update();
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    // Draw the live web feed
+    pipe.draw(0,0);
+    
+    //Abstract line stuff
     for (int i = 0; i < ofGetWidth(); i++) {
-        ofSetColor(i/1, i/3, i/2);
+        ofSetColor(i/4, i/3, i/2); //Replace this with pixel colors from feed
         ofLine(i, 0, i*sin(i)*mouseX, i*mouseY);
     }
+    
 }
 
 //--------------------------------------------------------------
