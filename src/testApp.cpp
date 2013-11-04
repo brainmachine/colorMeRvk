@@ -14,7 +14,7 @@ void testApp::update(){
 void testApp::draw(){
     for (int i = 0; i < ofGetWidth(); i++) {
         ofSetColor(i/1, i/3, i/2);
-        ofLine(i, 0, i*sin(i)*100, i*mouseY);
+        ofLine(i, 0, i*sin(i)*mouseX, i*mouseY);
     }
 }
 
