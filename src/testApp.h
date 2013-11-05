@@ -27,5 +27,5 @@ public:
     int masterCounter;
     int direction;
     
-		
+    bool isFullScreen;
 };

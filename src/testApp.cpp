@@ -4,6 +4,7 @@
 void testApp::setup(){
     ofBackground(0,0,0);
     ofSetBackgroundAuto(false);
+    isFullScreen = false;
     
     masterCounter = 0;
     direction = 1; //count up
@@ -39,11 +40,11 @@ void testApp::draw(){
     
     //Abstract line stuff
     for (int i = 0; i < ofGetWidth(); i++) {
-        int r = daMouseX*sin(i)/4;
+        int r = daMouseX*sin(masterCounter)/4;
         int g = daMouseY*i/4;
         int b = daMouseX*daMouseY*i/4;
         ofSetColor(r, g, b); //Replace this with pixel colors from feed
-        ofLine(i, 0, i*sin(i)*300, i*cos(i)*/*mouseY*30*/masterCounter);
+        ofLine(i, 0, i*sin(i)*mouseY, i*cos(i)*/*mouseY*30*/masterCounter);
     }
     //ofEllipse(masterCounter, masterCounter/3, 100, 100);
     
@@ -51,7 +52,10 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    if (key == 'f' || 'F') {
+        isFullScreen = !isFullScreen;
+        ofSetFullscreen(isFullScreen);
+    }
 }
 
 //--------------------------------------------------------------
